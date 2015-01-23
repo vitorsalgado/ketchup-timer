@@ -10,14 +10,6 @@ var app = {
     isTimerRunning: false,
 
     initialize: function () {
-        this.bindEvents();
-    },
-
-    bindEvents: function () {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-
-    onDeviceReady: function () {
         app.setUpLayout();
         app.setUp();
     },
@@ -344,7 +336,7 @@ var app = {
 
     playAlarm: function () {
         if(app.getPlayAlarmConfiguration()) {
-            var media = new Media('/android_asset/www/sound/alarm.mp3');
+            var media = new Media('sound/alarm.mp3');
             media.play();
         }
     },
