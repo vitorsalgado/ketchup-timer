@@ -43,7 +43,7 @@ var app = {
             return false;
         }
 
-        navigator.app.exitApp();
+        return true;
     },
 
     setUp: function () {
