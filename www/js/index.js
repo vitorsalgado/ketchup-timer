@@ -9,6 +9,9 @@ var app = {
 
     isTimerRunning: false,
 
+    isSettingsOpen: false,
+    isAboutDialogOpen: false,
+
     initialize: function () {
         this.bindEvents();
     },
@@ -18,8 +21,29 @@ var app = {
     },
 
     onDeviceReady: function () {
+        document.addEventListener('backbutton', app.onBackButton, false);
         app.setUpLayout();
         app.setUp();
+    },
+
+    onBackButton: function () {
+        if (app.isSettingsOpen) {
+            var cdCloseMenu = document.querySelector('.cd-close-menu');
+            cdCloseMenu.click();
+            return false;
+        }
+
+        if (app.isAboutDialogOpen) {
+            var cdPopUpClose = document.querySelector('.cd-popup-close');
+            cdPopUpClose.click();
+            return false;
+        }
+
+        if (app.isTimerRunning) {
+            return false;
+        }
+
+        navigator.app.exitApp();
     },
 
     setUp: function () {
@@ -245,6 +269,7 @@ var app = {
 
         cdMenuTrigger.addEventListener('click', function (event) {
             event.preventDefault();
+            app.isSettingsOpen = true;
 
             cdMainContent.classList.add('move-out');
             mainNav.classList.add('is-visible');
@@ -268,6 +293,7 @@ var app = {
 
         cdCloseMenu.addEventListener('click', function (event) {
             event.preventDefault();
+            app.isSettingsOpen = false;
 
             var optionContainer = document.querySelector('.configuration-container');
             optionContainer.style.display = 'none';
@@ -299,11 +325,13 @@ var app = {
 
         popUpTrigger.addEventListener('click', function (event) {
             event.preventDefault();
+            app.isAboutDialogOpen = true;
             popUp.classList.add('is-visible');
         });
 
         btnClosePopUp.addEventListener('click', function (event) {
             event.preventDefault();
+            app.isAboutDialogOpen = false;
             popUp.classList.remove('is-visible');
         });
 
@@ -343,7 +371,7 @@ var app = {
     },
 
     playAlarm: function () {
-        if(app.getPlayAlarmConfiguration()) {
+        if (app.getPlayAlarmConfiguration()) {
             var media = new Media('/android_asset/www/sound/alarm.mp3');
             media.play();
         }
@@ -438,7 +466,7 @@ var app = {
         app.storage.setItem('longBreakTime', longTime);
     },
 
-    getPlayAlarmConfiguration: function(){
+    getPlayAlarmConfiguration: function () {
         var config = app.storage.getItem('playAlarm');
 
         if (config) {
@@ -448,7 +476,7 @@ var app = {
         return false;
     },
 
-    setPlayAlarmConfiguration: function(value){
+    setPlayAlarmConfiguration: function (value) {
         if (value != null && typeof value != 'undefined') {
             app.storage.removeItem('playAlarm');
             app.storage.setItem('playAlarm', value);
