@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='icon' type='image/x-icon' href='img/favicon.ico' />
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+    <script src="js/modernizr.js"></script>
+
+    <title>Ketshup Timer</title>
+</head>
+<body>
+<main id="cd-main-content">
+    <section id="cd-intro">
+        <div class="wrap">
+            <div id="timer-container">
+                <p id="timer-status">Hello :-) start your job by touching on 'WORK'</p>
+
+                <p id="timer"></p>
+
+                <p id="timer-information"></p>
+            </div>
+            <div class="command-container">
+                <div id="work-button-container">
+                    <button id="work" type="button"><b>WORK</b></button>
+                </div>
+                <div id="stop-break-button-container">
+                    <div>
+                        <div>
+                            <button id="short-break" type="button"><b>SHORT BREAK</b></button>
+                        </div>
+                        <div>
+                            <button id="long-break" type="button"><b>LONG BREAK</b></button>
+                        </div>
+                    </div>
+                </div>
+                <div id="stop-button-container">
+                    <button id="stop" type="button"><b>STOP</b></button>
+                </div>
+            </div>
+        </div>
+        <header class="cd-header">
+            <div id="cd-logo"><a href="javascript:void(0);"><img src="img/cd-logo.svg" alt="Logo"></a></div>
+            <a class="cd-menu-trigger" href="#main-nav">Settings<span></span></a>
+            <a class="cd-options-trigger" href="#">About</a>
+        </header>
+        <div class="cd-blurred-bg"></div>
+    </section>
+</main>
+
+<div class="cd-shadow-layer"></div>
+
+<nav id="main-nav">
+    <ul>
+        <li>
+            <div class="configuration-container">
+                <section>
+
+                    <label class="alarm-label" for="option-play-sound">
+                        <input type="checkbox" id="option-play-sound" />Alarm
+                    </label>
+                    <br/>
+                    <label class="full-label" for="option-work-time">Work Time</label>
+                    <input class="full-input" type="number" id="option-work-time" placeholder=".>" min="1" max="1440"/>
+                    <br/>
+                    <label class="full-label" for="option-short-break-time">Short Break Time</label>
+                    <input class="full-input" id="option-short-break-time" type="number" placeholder=".>" min="1" max="1440"/>
+                    <br/>
+                    <label class="full-label" for="option-long-break-time">Long Break Time</label>
+                    <input class="full-input" id="option-long-break-time" type="number" placeholder=".>" min="1" max="1440"/>
+                    <br/>
+                    <div class="option-button-bar">
+                        <button type="button" id="option-save" class="option-btn save" title="Save options and close configuration screen">Save</button>
+                        <button type="button" id="option-reset" class="option-btn reset-btn" title="Reset options to defaults">Reset</button>
+                    </div>
+                </section>
+            </div>
+        </li>
+    </ul>
+    <a href="javascript:void(0);" class="cd-close-menu">Close<span></span></a>
+</nav>
+
+<div class="cd-popup" role="alert">
+    <div class="cd-popup-container">
+        <p>
+            <span class="app-name">Ketshup Timer - 2015</span>
+            <br/><br/>
+            <span class="about-description">Ketshup Timer is a simple time tracker with similar functions described on Pomodoro Technique® by Francesco Cirillo.</span>
+            <br /><br />
+            Developed using <span class="strong-span">Phonegap</span>
+            <br/><br/>
+            <a href="https://github.com/vitorsalgado/ketchup-timer/">Github</a>
+            <br/><br/>
+            <a href="http://br.linkedin.com/in/vitorsalgado/">Contact</a>
+        </p>
+        <ul class="cd-buttons">
+            <li><a id="btn-close-popup" href="javascript:void(0);">Close</a></li>
+        </ul>
+        <a href="javascript:void(0);" class="cd-popup-close img-replace"></a>
+    </div>
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/storage.js"></script>
+<script type="text/javascript">
+    app.initialize();
+</script>
+</body>
+</html>
